@@ -167,7 +167,7 @@ setMethod(f="SetValue",
 
 
 setGeneric(name="GradeReport",
-           def=function(assignment,maxGrade=NA,div=10)
+           def=function(assignment,maxGrade=NA,minGrade=NA,div=10)
            {
                standardGeneric("GradeReport")
            }
@@ -175,13 +175,14 @@ setGeneric(name="GradeReport",
 
 setMethod(f="GradeReport",
           signature="Assignment",
-          definition=function(assignment,maxGrade=NA,div=10)
+          definition=function(assignment,maxGrade=NA,minGrade=NA,div=10)
           {
               print(noquote(''))
               print(noquote(paste("Grade report for ",GetName(assignment))))
               print(noquote(''))
-              print(summary(assignment))         # Print out a five point summary for the data
+              print(summary(assignment,minGrade))         # Print out a five point summary for the data
               values <- GetValue(assignment)     # Get the raw scores.
+              values <- values[!is.na(values)]
 
               if(is.na(maxGrade)) {
                   # The maxGrade was not set. Assume the max score from
@@ -368,7 +369,7 @@ setMethod(f="SetValue",
 
 setMethod(f="GradeReport",
           signature="LetterGrade",
-          definition=function(assignment,maxGrade=NA,div=10)
+          definition=function(assignment,maxGrade=NA,minGrade=NA,div=10)
           {
               print(noquote(''))
               print(noquote(paste("Grade report for ",GetName(assignment))))

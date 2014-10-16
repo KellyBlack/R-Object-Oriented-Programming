@@ -87,10 +87,14 @@ setMethod(f="plot",
 
 setMethod(f="summary",
           signature="Assignment",
-          definition=function(object,...)
+          definition=function(object,minValue=NA,...)
           {
               # Get the grade values and return the five point summary.
               values <- GetValue(object)
+              if(!is.na(minValue))
+                  {
+                      values <- values[values >= minValue]
+                  }
               return(summary(values))
           }
           )
@@ -116,6 +120,21 @@ setMethod(f="show",
               print(noquote(paste("Assignment:",GetName(object))))
               print(noquote(paste("(",length(values),") Grades:",sep="")))
               print(values)
+          }
+          )
+
+sort.NumericGrade <- function(object)
+    {
+        ## Sort the grades and return the sorted vector
+        return(sort(GetValue(object)))
+    }
+
+setMethod(f="length",
+          signature="NumericGrade",
+          definition=function(x)
+          {
+              ## return the length of the value.
+              return(GetValue(x))
           }
           )
 
