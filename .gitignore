@@ -1,0 +1,13 @@
+*.o
+*~
+.cproject
+.project
+*.pyc
+*.aux
+*.log
+*.dvi
+*.nav
+*.out
+*.snm
+*.toc
+*.csv
