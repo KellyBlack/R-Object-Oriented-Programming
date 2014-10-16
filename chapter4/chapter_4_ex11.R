@@ -1,0 +1,5 @@
+set.seed(4.0)
+rnorm(1)
+rnorm(2)
+set.seed(4.0)
+rnorm(3)

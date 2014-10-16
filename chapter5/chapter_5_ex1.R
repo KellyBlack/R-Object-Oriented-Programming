@@ -1,0 +1,5 @@
+a <- c("one","three")
+nchar(a)
+b <- c(1.2,exp(1))
+nchar(b)
+nchar(b,type="width")

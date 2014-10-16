@@ -1,0 +1,15 @@
+source('chapter_8_ex12.R')
+
+aDie <- Die()
+aDie$simulation()
+aDie$simulation()
+aDie$simulation()
+aDie$simulation()
+aDie$simulation()
+plot(aDie$getHistory(),xlab="Value After Die Roll",ylab="Frequency")
+
+aCoin <- Coin()
+aCoin$simulation()
+aCoin$simulation()
+aCoin$simulation()
+plot(aCoin$getHistory(),xlab="Value After Coin Flip",ylab="Frequency")
