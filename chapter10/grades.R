@@ -350,7 +350,7 @@ setMethod(f="SetValue",
                       # by using first and last place markers.
                       thePattern <- paste("^",sub("\\+","\\\\+",value[lupe]),"$",sep="")
                       pos <- grep(thePattern,theNames)
-                      if(value[lupe]=="") {
+                      if((is.na(value[lupe])) || (value[lupe]=="")) {
                           #An empty string was passed.
                           value[lupe] <- "NA"
                       } else if(length(pos) != 1) {
@@ -529,7 +529,7 @@ setMethod(f="ReadGrades",
                   {
                       # go through each course type and determine if
                       # this column is a quiz/test/hw/?
-                      if(length(grep(type,gradeItem))>0)
+                      if(length(grep(paste('^',type,sep=''),gradeItem))>0)
                           {
                               # The prefix for the name matches one of the predefined types.
                               if((class(grades[[gradeItem]])=="numeric") ||
